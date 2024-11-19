@@ -1,8 +1,4 @@
-1. Using Terraform
-Prerequisites
-Install Terraform on your machine.
-Ensure you have AWS credentials set up with sufficient permissions to create the required resources.
-Steps
+Using Terraform
 Install Terraform
 Download and install Terraform from the official site.
 
@@ -31,21 +27,21 @@ Deploy the infrastructure:
 bash
 Copy code
 terraform apply
-2. Using the CI/CD Pipeline
-The CI/CD pipeline is defined in the .gitlab-ci.yml file and automates infrastructure provisioning, application deployment, and failover synchronization.
+Using the CI/CD Pipeline
+The pipeline is defined in the .gitlab-ci.yml file and automates provisioning and deployment processes.
 
 Pipeline Stages
 The pipeline includes the following stages:
 
-init: Initializes Terraform for the primary and failover regions.
-plan: Plans the infrastructure for both regions.
+init: Initializes Terraform for both primary and failover regions.
+plan: Plans the infrastructure changes for both regions.
 apply: Deploys the infrastructure in both regions.
 build: Builds the React and Svelte front-end applications.
 deploy: Deploys front-end, back-end, and microservices.
-failover_sync: Synchronizes data (e.g., S3 buckets, RDS replicas) between primary and failover regions.
-rollback: Rolls back changes in case of deployment failures.
-Setting Up GitLab CI/CD
-Add the following environment variables to your GitLab CI/CD project settings:
+failover_sync: Synchronizes resources (e.g., S3 buckets, RDS replicas) between primary and failover regions.
+rollback: Reverts changes if deployment fails.
+Set Up GitLab CI/CD
+Add the following environment variables to GitLab CI/CD settings:
 
 AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY
@@ -58,4 +54,4 @@ Copy code
 git add .
 git commit -m "Trigger pipeline"
 git push origin main
-
+Monitor the pipeline execution in the GitLab UI under CI/CD > Pipelines.
